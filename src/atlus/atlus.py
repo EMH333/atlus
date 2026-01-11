@@ -373,19 +373,12 @@ def split_unit(address_string: str) -> dict[str, str]:
         else:
             break
 
-    unit = remove_prefix(address_string, number).lstrip(" -,/")
+    unit = address_string.removeprefix(number).lstrip(" -,/")
     if unit:
         add_dict["addr:unit"] = unit
     add_dict["addr:housenumber"] = number
 
     return add_dict
-
-
-def remove_prefix(text: str, prefix: str) -> str:
-    """Remove prefix from string for Python 3.8."""
-    if text.startswith(prefix):
-        return text[len(prefix) :]
-    return text
 
 
 def get_address(address_string: str) -> tuple[dict[str, str], list[str | None]]:

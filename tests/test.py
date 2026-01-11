@@ -16,7 +16,6 @@ from src.atlus.atlus import (
     remove_br_unicode,
     manual_join,
     split_unit,
-    remove_prefix,
     get_address,
     get_phone,
     grid_comp,
@@ -380,18 +379,6 @@ def test_split_unit():
     assert split_unit("987 B") == {"addr:housenumber": "987", "addr:unit": "B"}
     assert split_unit("987 B2") == {"addr:housenumber": "987", "addr:unit": "B2"}
     assert split_unit("") == {"addr:housenumber": ""}
-
-
-def test_remove_prefix() -> None:
-    """Test cases for remove_prefix"""
-    assert remove_prefix("hello", "") == "hello"
-    assert remove_prefix("hello", "h") == "ello"
-    assert remove_prefix("hello world", "hello ") == "world"
-    assert remove_prefix("hello world", "hello") == " world"
-    assert remove_prefix("hello world", "goodbye") == "hello world"
-    assert remove_prefix("", "") == ""
-    assert remove_prefix("prefix", "prefix") == ""
-    assert remove_prefix("prefix", "prefix ") == "prefix"
 
 
 def test_get_address() -> None:
