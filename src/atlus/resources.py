@@ -145,6 +145,8 @@ state_expand = {
 }
 """Map states to abbreviations."""
 
+state_codes = set(state_expand.values())
+
 street_expand = {
     "ACC": "ACCESS",
     "ALY": "ALLEY",

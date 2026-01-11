@@ -17,6 +17,7 @@ from .resources import (
     post_comp,
     saint_comp,
     sr_comp,
+    state_codes,
     state_expand,
     street_comp,
     street_expand,
@@ -429,11 +430,11 @@ def get_address(address_string: str) -> tuple[dict[str, str], list[str | None]]:
         cleaned["addr:city"] = abbrs(get_title(cleaned["addr:city"], single_word=True))
 
     if "addr:state" in cleaned:
-        old = cleaned["addr:state"].replace(".", "")
-        if old.upper() in state_expand:
-            cleaned["addr:state"] = state_expand[old.upper()]
-        elif len(old) == 2 and old.upper() in list(state_expand.values()):
-            cleaned["addr:state"] = old.upper()
+        old = cleaned["addr:state"].replace(".", "").upper()
+        if old in state_expand:
+            cleaned["addr:state"] = state_expand[old]
+        elif len(old) == 2 and old in state_codes:
+            cleaned["addr:state"] = old
 
     if "addr:unit" in cleaned:
         cleaned["addr:unit"] = cleaned["addr:unit"].removeprefix("Space").strip(" #.")
