@@ -264,7 +264,7 @@ def clean_address(address_string: str) -> str:
     return grid_comp.sub(grid_match, address_string).strip(" ,.")
 
 
-def help_join(tags, keep: list[str]) -> str:
+def help_join(tags, keep: set[str]) -> str:
     """Help to join address fields."""
     tag_join: list[str] = [v for k, v in tags.items() if k in keep]
     return " ".join(tag_join)
@@ -274,7 +274,7 @@ def addr_street(tags: dict[str, str]) -> str:
     """Build the street field."""
     return help_join(
         tags,
-        [
+        {
             "StreetName",
             "StreetNamePreDirectional",
             "StreetNamePreModifier",
@@ -282,14 +282,14 @@ def addr_street(tags: dict[str, str]) -> str:
             "StreetNamePostDirectional",
             "StreetNamePostModifier",
             "StreetNamePostType",
-        ],
+        },
     )
 
 
 def addr_housenumber(tags: dict[str, str]) -> str:
     """Build the housenumber field."""
     return help_join(
-        tags, ["AddressNumberPrefix", "AddressNumber", "AddressNumberSuffix"]
+        tags, {"AddressNumberPrefix", "AddressNumber", "AddressNumberSuffix"}
     )
 
 
