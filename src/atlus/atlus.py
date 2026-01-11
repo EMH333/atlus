@@ -74,7 +74,7 @@ def get_title(value: str, single_word: bool = False) -> str:
     Returns:
         str: Fixed string.
     """
-    if (value.isupper() and " " in value) or (value.isupper() and single_word):
+    if (single_word or " " in value) and value.isupper():
         return mc_replace(value.title())
     return value
 
