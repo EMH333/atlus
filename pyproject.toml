@@ -2,6 +2,9 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[dependency-groups]
+dev = ["pytest>=9.0.2", "ruff>=0.14.9"]
+
 [project]
 name = "atlus"
 dynamic = ["version"]
@@ -24,7 +27,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Typing :: Typed",
 ]
-dependencies = ["usaddress>=0.5.15", "regex>=2024.11.6"]
+dependencies = ["pydantic>=2.12.5", "regex>=2024.11.6", "usaddress>=0.5.15"]
 
 [project.urls]
 Documentation = "https://whubsch.github.io/atlus/index.html"
